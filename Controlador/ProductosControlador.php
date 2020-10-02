@@ -60,35 +60,27 @@
             $this->vista->ShowHomeLocation();
         }
 
+
+        //lo hice teniendo en cuenta el modelo de los tasks - tandil
         function EditarProducto($params = null){
             $id = $params[':ID'];
-            $producto=$this->modelo->EditarProductoDelModelo($id);
+            $this->modelo->GetProducto($id);
             $this->vista->ShowEditTask($id);
- 
-            if ($producto) {
-                $producto = $this->modelo->EditarProductoDelModelo($id);
-                $this->view->response("Producto id=$id actualizada con éxito", 200);
+            
+            
+            /* FALTA HACER PAG DE ERROR
+            if ($id) {
+                $this->modelo->EditarProducto($_POST['nombremod'],$_POST['descripcionmod'],$_POST['preciomod'],$_POST['cantidadmod'],$id_categoria);
+                $this->vista->ShowHomeLocation();
             }
-            else
-                $this->view->response("Producto id=$id not found", 404);
+            else{
+                $this->vista->response("Producto id=$id not found", 404);
+            }*/
+
         }
     
     
 
-
-        //CATEGORIA
-        function InsertarCategoria(){
-            $this->modelo->InsertCategoria($_POST['descripcion']);
-            $this->vista->ShowHomeLocation();  
-        }
-        
-        function BorrarCategoria($params=null){
-            $id= $params[':ID'];
-            $this->modelo->DeleteCategoriaDelModelo($id);
-            $this->vista->ShowHomeLocation();
-        }
-       
-    
     }
     
     
