@@ -20,9 +20,10 @@
         <label for="categorias">Categoria</label>
           <select class="form-control" name="id_categoria">
             <option value="">Elegi...</option>
-            <option  value="9">Helados</option>
-            <option  value="2">Postres</option>
-            <option value="3">Cafe</option>
+            <option  value="{$producto->id_categoria}">Helados</option>
+            <option  value="{$producto->id_categoria}">Postres</option>
+            <option value="{$producto->id_categoria}">Cafe</option>
+        
           </select>
       </div>
   <div class="col-auto">

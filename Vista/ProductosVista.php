@@ -11,24 +11,24 @@ class ProductosVista{
         $this->title = "Lista de Productos";
     }
 
-    function showHome($productos, $categorias){ 
+    function ShowHomeProductos($productos){ 
         $smarty = new Smarty();
         $smarty->assign('titulo',$this->title);
         $smarty->assign('productos', $productos); 
         $smarty->display('templates/productos.tpl'); 
-        $smarty->assign ('categorias', $categorias);
-        $smarty->display('templates/categorias.tpl');
     }
 
-    function showHomeLocation(){
+    function ShowHomeLocation(){
         header("Location: ".BASE_URL."home");
     }
 
     function ShowEditTask($productos){
         $smarty = new Smarty();
         $smarty->assign('productos', $productos); 
-        $smarty->display('templates/productos.tpl'); 
+        $smarty->display('templates/editarProducto.tpl'); 
     }
+
+    
 
    
 }

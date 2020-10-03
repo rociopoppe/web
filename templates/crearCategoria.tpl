@@ -1,4 +1,4 @@
-<form  action="categoria/insert" method="POST">
+<form  action="categorias/insert" method="POST">
   <div class="form-column align-items-center">
       <div class="col-auto">
         <label for="descripcion">Descripción</label>

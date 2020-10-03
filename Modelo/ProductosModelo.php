@@ -18,18 +18,20 @@
         }
 
         function GetProducto($id){
-            $sentencia=$this->db->prepare("SELECT * FROM Producto where $id=?");
+            $sentencia=$this->db->prepare("SELECT * FROM Producto where id=?");
             $sentencia->execute(array($id));
             return $sentencia->fetch(PDO::FETCH_OBJ);
         }
+        
    
-   
+        //funciona
         function InsertProducto($nombre, $descripcion, $precio,$cantidad,$id_categoria){
             $sentencia = $this->db->prepare("INSERT INTO Producto(nombre, descripcion,precio, cantidad, id_categoria) VALUES(?,?,?,?,?)");
             $sentencia->execute(array($nombre, $descripcion, $precio,$cantidad,$id_categoria));
             return $this->db->lastInsertId();
         }
         
+        //funciona
         function DeleteProductoDelModelo($id){
             $sentencia = $this->db->prepare("DELETE FROM Producto WHERE id=?");
             $sentencia->execute(array($id));
@@ -43,11 +45,13 @@
             $sentencia->execute([$id]); // ejecuta   
              
         } */
-        function EditarProducto($nombre, $descripcion, $precio,$cantidad,$id_categoria){
-            $sentencia = $this->db->prepare("UPDATE Producto set nombre=?, descripcion=?,precio=?, cantidad=?, id_categoria=?) VALUES(?,?,?,?,?)");
-            var_dump($id_categoria);
+      
+
+        function UpdateCategoria($nombre, $descripcion, $precio,$cantidad,$id_categoria){
+            $sentencia = $this->db->prepare("UPDATE Producto set nombre=?, descripcion=?,precio=?, cantidad=?, id_categoria=?");
             $sentencia->execute(array($nombre, $descripcion, $precio,$cantidad,$id_categoria));
         }
-          
+
+       
         
     }

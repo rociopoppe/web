@@ -14,10 +14,9 @@
     
         }
     
-        function Home(){
+        function GetProductos(){
             $productos = $this->modelo->GetProductos();
-            $categorias=$this->modelo->GetCategorias();
-            $this->vista->ShowHome($productos, $categorias);
+            $this->vista->ShowHomeProductos($productos);
         }
     
        /* 
@@ -53,7 +52,7 @@
             $this->modelo->InsertProducto($_POST['nombre'],$_POST['descripcion'],$_POST['precio'],$_POST['cantidad'],$id_categoria);
             $this->vista->ShowHomeLocation();
         }
-    
+         //funciona INSERTAR Y BORRAR pero nos lleva a la home gral en lugar de a la home de productos
         function BorrarProducto($params = null){
             $id = $params[':ID'];
             $this->modelo->DeleteProductoDelModelo($id);
@@ -66,21 +65,20 @@
             $id = $params[':ID'];
             $this->modelo->GetProducto($id);
             $this->vista->ShowEditTask($id);
-            
-            
-            /* FALTA HACER PAG DE ERROR
-            if ($id) {
-                $this->modelo->EditarProducto($_POST['nombremod'],$_POST['descripcionmod'],$_POST['preciomod'],$_POST['cantidadmod'],$id_categoria);
-                $this->vista->ShowHomeLocation();
-            }
-            else{
-                $this->vista->response("Producto id=$id not found", 404);
-            }*/
 
         }
     
-    
+        
+        function UpdateProducto($params=null){
+            $id= $params[':ID'];
+            $producto=$this->modelo->UpdateProducto($id);
+            $this->vista->ShowHomeLocation();  //estaba hecho con show home location
 
+        }
+
+        
+       
+    
     }
     
     

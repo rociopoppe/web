@@ -11,23 +11,21 @@ class CategoriasVista{
         $this->title = "Lista de Categorias";
     }
 
-    function showHome($categorias){ 
+    function ShowHome($categorias){ 
         $smarty = new Smarty();
         $smarty->assign('titulo',$this->title);
         $smarty->assign ('categorias', $categorias);
         $smarty->display('templates/categorias.tpl');
     }
 
-    function showCategorias($categorias){
-        
-    }
-    function showHomeLocation(){
+    
+    function showHomeLocationCategoria(){
         header("Location: ".BASE_URL."home");
     }
 
-    function ShowEditTask($categorias){
+    function mostrarCategoriaEdit($categorias){
         $smarty = new Smarty();
-        $smarty->assign('productos', $categorias); 
+        $smarty->assign('categorias', $categorias); 
         $smarty->display('templates/editarCategoria.tpl'); 
     }
 

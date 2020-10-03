@@ -2,7 +2,9 @@
    
     require_once './Controlador/ProductosControlador.php';
     require_once './Controlador/CategoriasControlador.php';
+    require_once './Controlador/HomeControlador.php';
     require_once 'RouterClass.php';
+    
 
     // CONSTANTES PARA RUTEO
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -12,9 +14,8 @@
     $r = new Router();
 
     // rutas
-    $r->addRoute("home", "GET", "ProductosControlador", "Home");
 
-    $r->addRoute("productos", "GET", "ProductosControlador", "Productos");
+    $r->addRoute("productos", "GET", "ProductosControlador", "GetProductos");
 
     $r->addRoute("productos/insert", "POST", "ProductosControlador", "InsertarProducto");
 
@@ -22,17 +23,19 @@
 
     $r->addRoute("productos/editar/:ID", "GET", "ProductosControlador", "EditarProducto");
 
-    $r->addRoute("categorias", "GET", "CategoriasControlador", "Categorias");
+    $r->addRoute("categorias", "GET", "CategoriasControlador", "ShowCategorias");
 
-    $r->addRoute("categoria/insert", "POST", "CategoriasControlador", "InsertarCategoria");
+    $r->addRoute("categorias/insert", "POST", "CategoriasControlador", "InsertarCategoria");
 
-    $r->addRoute("categoria/borrar/:ID", "GET", "CategoriasControlador", "BorrarCategoria");
+    $r->addRoute("categorias/borrar/:ID", "GET", "CategoriasControlador", "BorrarCategoria");
 
     $r->addRoute("categorias/editar/:ID", "GET", "CategoriasControlador", "EditarCategoria");
-    
+
+    $r->addRoute("editar/:ID", "GET", "CategoriasControlador", "UpdateCategoria");
+
 
     //Ruta por defecto.
-    $r->setDefaultRoute("ProductosControlador", "Home");
+    $r->setDefaultRoute("HomeControlador", "Home");
 
     //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
