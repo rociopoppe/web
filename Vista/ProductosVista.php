@@ -18,8 +18,17 @@ class ProductosVista{
         $smarty->display('templates/productos.tpl'); 
     }
 
+
     function ShowHomeLocation(){
         header("Location: ".BASE_URL."home");
+    }
+    
+    function MostrarXFiltro($productos,$categorias,$id_categoria){
+        $smarty = new Smarty();
+        $smarty->assign('productos', $productos); 
+        $smarty->assign('categorias', $categorias); 
+        $smarty->assign('id_categoria', $id_categoria);
+        $smarty->display('templates/productos.tpl'); 
     }
     
 
@@ -33,13 +42,21 @@ class ProductosVista{
         $smarty->assign('base',$this->base);
     }
 
-    /*function ShowEditProduct($product, $marks){
+    function ShowError($error) {
         $smarty = new Smarty();
-        $smarty->assign('producto', $product);
-        $smarty->assign('marks', $marks);
-        // muestro el template 
-        $smarty->display('templates/editProduct.tpl'); 
-    }*/
+
+        $smarty->assign('error', $error);
+    
+        $smarty->display('templates/error.tpl');
+    }
+
+    function ShowProducto($producto,$categoria) {
+        $smarty = new Smarty();
+        $smarty->assign('producto', $producto);
+        $smarty->assign ('categoria',$categoria);
+        $smarty->display('templates/verdetalleProducto.tpl');
+    }
+    
 
    
 }

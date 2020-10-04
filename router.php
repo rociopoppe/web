@@ -11,6 +11,12 @@
     //define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/'login);
     //define("LOGOUT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/')logout;
 
+    if (!empty($_GET['action'])) {
+        $action = $_GET['action'];
+    } else {
+        $action = 'home'; // acción por defecto si no envían
+    }
+    
     $r = new Router();
 
     // rutas
@@ -25,7 +31,9 @@
 
     $r->addRoute("productos/update/:ID", "POST", "ProductosControlador", "UpdateProducto");
 
-    
+    $r->addRoute("productos/vermas/:ID", "GET", "ProductosControlador", "ShowDetail");
+
+    $r->addRoute("buscarXCategoria/:ID", "POST", "ProductosControlador", "GetProductosXCategoria");
 
 
     $r->addRoute("categorias", "GET", "CategoriasControlador", "ShowCategorias");

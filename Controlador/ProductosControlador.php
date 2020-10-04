@@ -42,7 +42,8 @@
         function BorrarProducto($params = null){
             $id = $params[':ID'];
             $this->modelo->DeleteProductoDelModelo($id);
-            $this->vista->ShowHomeLocation();
+            $productos=$this->modelo->GetProductos();
+            $this->vista->ShowHomeProductos($productos);
         }
 
 
@@ -75,28 +76,39 @@
                     $this->modelo->UpdateProducto($id,$nombre,$descripcion,$precio,$cantidad,$id_categoria);
                   
             }
-            $categorias=$this->CategoriasModelo->GetCategorias();
             $productos=$this->modelo->GetProductos();
-            $this->vista->ShowEditTask($productos,$categorias);
+            $this->vista->ShowHomeProductos($productos);
+            //$this->vista->ShowEditTask($productos,$categorias);
         }
 
-        //LLAMA A ACTUALIZAR UN PRODUCTO
-       /* function UpdateProduct($params = null){
-            $product_id = $params[':ID'];
-            if ((isset($_POST['edit_product']) && isset($_POST['edit_price'])) && (isset($_POST['edit_stock']) && isset($_POST['edit_description'])) && isset($_POST['select_brand'])) {
-                $product = $_POST['edit_product'];
-                $price = $_POST['edit_price'];
-                $stock = $_POST['edit_stock'];
-                $description = $_POST['edit_description'];
-                $brand = $_POST['select_brand'];
-                $this->model->UpdateProduct($product,$price,$stock,$description,$brand,$product_id);
-            }
+        function ShowDetail($params=null) {
+            $id= $params[':ID'];
+            $producto=$this->modelo->GetProducto($id);
+            $id_categoria=$producto->id_categoria;
+            $categoria=$this->CategoriasModelo->GetCategoria($id_categoria);
+            $this->vista->ShowProducto($producto,$categoria);
+                        
+        }
 
-            $marks = $this->marksModel->GetMarks();
-            $products = $this->model->GetProducts();
-            $this->view->ShowLoginUsername($products, $marks);
-        }*/
-       
+        
+        function GetProductosXCategoria(){
+            if (isset($_GET['categoriaABuscar'])) {
+                $id_categoria = $_GET['categoriaABuscar'];
+                var_dump("idcategoria". $id_categoria);
+                $productos = $this->modelo->GetProductosXCategoria($id_categoria);
+                $categorias= $this->CategoriasModelo->GetCategorias();
+                $this->vista->MostrarXFiltro($productos,$categorias,$id_categoria);
+            }
+        }
+
+   
+
+
+    
+
+    
+     
+    
     
     }
     

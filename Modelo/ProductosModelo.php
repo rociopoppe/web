@@ -9,7 +9,6 @@
             $this->db->setAttribute (PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         }
 
-        //PRODUCTOS
 
         function GetProductos(){
             $sentencia=$this->db->prepare("SELECT * FROM Producto");
@@ -19,9 +18,10 @@
 
         function GetProducto($id){
             $sentencia=$this->db->prepare("SELECT * FROM Producto where id=?");
-            $sentencia->execute(array($id));
+            $sentencia->execute([$id]);
             return $sentencia->fetch(PDO::FETCH_OBJ);
         }
+     
         
    
         //funciona
@@ -37,26 +37,29 @@
             $sentencia->execute(array($id));
         }
         
-        /*function EditarProductoDelModelo($id){
-            $sql = "UPDATE Productos
-                    SET nombre = ?, descripcion = ?, precio = ?, cantidad = ?, id_categoria = ?
-                    WHERE id = ?";
-            $sentencia = $this->db->prepare($sql);
-            $sentencia->execute([$id]); // ejecuta   
-             
-        } */
+       
       
   
         function UpdateProducto($id,$nombre, $descripcion, $precio,$cantidad,$id_categoria){
-            var_dump($id_categoria);
             $sentencia = $this->db->prepare("UPDATE Producto set nombre=?, descripcion=?,precio=?, cantidad=?, id_categoria=? WHERE id=?");
             $sentencia->execute(array($nombre, $descripcion, $precio,$cantidad,$id_categoria,$id));
         }
-       /*//ACTUALIZA DATOS DE UN PRODUCTO
-       function UpdateProduct($product,$price,$stock,$description,$brand,$product_id){
-        $sentencia = $this->db->prepare("UPDATE producto SET nombre=?, precio=?, stock=?, descripcion=?, id_marca=? WHERE producto.id=?");
-        $sentencia->execute(array($product,$price,$stock,$description,$brand,$product_id));
+       
+
+        function GetProductosXCategoria($id_categoria){
+            var_dump("entre a buscar prod x categoria modelo");
+            $sentencia = $this->db->prepare("SELECT * FROM Producto WHERE id=?");
+            $sentencia->execute([$id_categoria]);
+            return $sentencia->fetchAll(PDO::FETCH_OBJ);
+        }
+
+     /*  //BUSCO LOS PRODUCTOS QUE COICIDAN CON EL ID DEL FILTRO POR MARCA
+       function GetProductsByMark($mark_id){
+        $sentencia = $this->db->prepare("SELECT * FROM producto WHERE id_marca=?");
+        $sentencia->execute([$mark_id]);
+        return $sentencia->fetchAll(PDO::FETCH_OBJ);
     }*/
+    
     }
        
         
