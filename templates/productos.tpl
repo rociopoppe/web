@@ -9,6 +9,8 @@
             <div class="btnsXprod">
                 <button type="button" class="btn btn-outline-info"><a href="productos/vermas/{$producto->nombre}">Ver descripción</a></button>
                 <button type="button" class="btn btn-outline-dark" id="{$producto->id}"><a href="productos/editar/{$producto->id}">Editar</a></button>
+                                                                                  
+                
                 <button type="button" class="btn btn-outline-danger"><a href="productos/borrar/{$producto->id}">Borrar</a></button> 
             </div>
         {/foreach}

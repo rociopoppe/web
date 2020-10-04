@@ -23,6 +23,11 @@
 
     $r->addRoute("productos/editar/:ID", "GET", "ProductosControlador", "EditarProducto");
 
+    $r->addRoute("productos/update/:ID", "POST", "ProductosControlador", "UpdateProducto");
+
+    
+
+
     $r->addRoute("categorias", "GET", "CategoriasControlador", "ShowCategorias");
 
     $r->addRoute("categorias/insert", "POST", "CategoriasControlador", "InsertarCategoria");
@@ -31,7 +36,7 @@
 
     $r->addRoute("categorias/editar/:ID", "GET", "CategoriasControlador", "EditarCategoria");
 
-    $r->addRoute("editar/:ID", "GET", "CategoriasControlador", "UpdateCategoria");
+    $r->addRoute("guardareditar/:ID", "GET", "CategoriasControlador", "UpdateCategoria");
 
 
     //Ruta por defecto.

@@ -21,14 +21,25 @@ class ProductosVista{
     function ShowHomeLocation(){
         header("Location: ".BASE_URL."home");
     }
+    
 
-    function ShowEditTask($productos){
+    function ShowEditTask($producto,$categorias){
         $smarty = new Smarty();
-        $smarty->assign('productos', $productos); 
+        $smarty->assign('BASE_URL', BASE_URL);
+        $smarty->assign('producto', $producto); 
+        $smarty->assign ('categorias',$categorias);
         $smarty->display('templates/editarProducto.tpl'); 
+        $this->base =  "http://".$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]);
+        $smarty->assign('base',$this->base);
     }
 
-    
+    /*function ShowEditProduct($product, $marks){
+        $smarty = new Smarty();
+        $smarty->assign('producto', $product);
+        $smarty->assign('marks', $marks);
+        // muestro el template 
+        $smarty->display('templates/editProduct.tpl'); 
+    }*/
 
    
 }
